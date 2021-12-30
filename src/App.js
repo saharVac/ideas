@@ -13,11 +13,31 @@ function App() {
 
   const [ideas, setIdeas] = useState([])
 
-  const createIdea = (idea) => {
-    setIdeas([
-      ...ideas,
-      idea
-    ])
+  const createIdea = (value) => {
+
+    // check idea is not empty
+    if (value) {
+
+      console.log('idea ', value)
+
+      // check idea doesn't already exist
+      if (ideas.every(idea => idea.idea != value)) {
+        setIdeas([
+          ...ideas,
+          {
+            idea: value,
+            key: value
+          }
+        ])
+      }
+
+    }
+
+    
+  }
+
+  const removeIdea = (key) => {
+    setIdeas(ideas.filter(idea => key != idea.key))
   }
 
   return (
@@ -29,7 +49,7 @@ function App() {
 
 
       {/* area for ideas to be shown with the ability to  */}
-      <IdeasSection ideas={ideas} />
+      <IdeasSection removeIdea={removeIdea} ideas={ideas} />
 
     </div>
   );

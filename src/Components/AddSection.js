@@ -5,16 +5,8 @@ function AddSection({ add }) {
     const ideaRef = useRef()
 
     const addIdea = () => {
-
-        console.log('here')
-        
         const ideaText = ideaRef.current.value
-
-        // add idea if not empty
-        if (ideaText) {
-            add(ideaText)
-        }
-
+        add(ideaText)
     }
 
     return (

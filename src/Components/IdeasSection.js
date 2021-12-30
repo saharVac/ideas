@@ -1,12 +1,13 @@
 import React from "react";
+import Idea from './Idea'
 
-function IdeasSection({ ideas }) {
+function IdeasSection({ ideas, removeIdea }) {
 
     return (
         <div className="ideas-section">
             {
                 ideas.map(idea => {
-                    return <p>{idea}</p>
+                    return <Idea removeIdea={() => removeIdea(idea.key)} key={idea.key} idea={idea.idea} />
                 })
             }
         </div>
