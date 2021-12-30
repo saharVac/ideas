@@ -5,9 +5,7 @@ import IdeasSection from './Components/IdeasSection'
 
 
 // Minimal Viable Product
-// TODO: ability to define ideas
 // TODO: store data
-// TODO: test commit
 
 function App() {
 
@@ -21,23 +19,32 @@ function App() {
       console.log('idea ', value)
 
       // check idea doesn't already exist
-      if (ideas.every(idea => idea.idea != value)) {
+      if (ideas.every(idea => idea.idea !== value)) {
         setIdeas([
           ...ideas,
           {
             idea: value,
-            key: value
+            key: value,
+            definitions: []
           }
         ])
       }
-
     }
+  }
 
-    
+  const addIdeaDefinition = (definition, key) => {
+    console.log('definition, ', definition)
+    setIdeas(ideas.map(idea => {
+      return {
+        idea: idea.idea,
+        key: idea.key,
+        definitions: key === idea.key ? [...idea.definitions, definition] : idea.definitions
+      }
+    })) 
   }
 
   const removeIdea = (key) => {
-    setIdeas(ideas.filter(idea => key != idea.key))
+    setIdeas(ideas.filter(idea => key !== idea.key))
   }
 
   return (
@@ -49,7 +56,7 @@ function App() {
 
 
       {/* area for ideas to be shown with the ability to  */}
-      <IdeasSection removeIdea={removeIdea} ideas={ideas} />
+      <IdeasSection addIdeaDefinition={addIdeaDefinition} removeIdea={removeIdea} ideas={ideas} />
 
     </div>
   );
