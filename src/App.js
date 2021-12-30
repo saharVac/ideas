@@ -5,9 +5,9 @@ import IdeasSection from './Components/IdeasSection'
 
 
 // Minimal Viable Product
-// TODO: ability to add ideas
 // TODO: ability to define ideas
 // TODO: store data
+// TODO: test commit
 
 function App() {
 
